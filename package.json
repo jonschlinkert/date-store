@@ -1,7 +1,7 @@
 {
   "name": "date-store",
   "description": "Easily persist or get stored dates/times. Useful for conditionally making updates in an application based on the amount of time that has passed.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "homepage": "https://github.com/jonschlinkert/date-store",
   "author": "Jon Schlinkert (https://github.com/jonschlinkert)",
   "repository": "jonschlinkert/date-store",
