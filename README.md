@@ -18,12 +18,13 @@ var DateStore = require('date-store');
 
 ## API
 
-### [DateStore](index.js#L23)
+### [DateStore](index.js#L24)
 
-Create a new `DateStore` with the given options.
+Create a new `DateStore` with the given `name` and `options`.
 
 **Params**
 
+* `name` **{String}**: If `options.path` is supplied, `name` will be ignored. Otherwise `name` is used as the filename for the JSON store: `~/.date-store/{name}.json`
 * `options` **{Object}**: Optionally pass a `dir` and/or `path` to use for the JSON store. Default is `~/.date-store.json`
 
 **Example**
@@ -32,7 +33,7 @@ Create a new `DateStore` with the given options.
 var dateStore = new DateStore();
 ```
 
-### [.set](index.js#L39)
+### [.set](index.js#L50)
 
 Store a `new Date()` for `key`.
 
@@ -47,7 +48,7 @@ Store a `new Date()` for `key`.
 dateStore.set(key);
 ```
 
-### [.get](index.js#L63)
+### [.get](index.js#L74)
 
 Get the stored date object for `key`, or, if an instance of `Date` is passed, it will be returned directly.
 
@@ -67,7 +68,7 @@ console.log(dateStore.get('foo') instanceof Date);
 //=> true
 ```
 
-### [.getRaw](index.js#L90)
+### [.getRaw](index.js#L101)
 
 Get the "raw" JSON-stringified date that was originally stored for `key`.
 
@@ -90,7 +91,7 @@ console.log(dateStore.get('foo') instanceof Date);
 //=> true
 ```
 
-### [.getTime](index.js#L109)
+### [.getTime](index.js#L120)
 
 Get the numeric value corresponding to the time for stored date `key`, according to universal time. See the MDN docs for [.getTime](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getTime).
 
@@ -107,7 +108,7 @@ console.log(dateStore.getTime('foo'));
 //=> 1460378350000
 ```
 
-### [.date](index.js#L128)
+### [.date](index.js#L139)
 
 Create a JavaScript date object from the given `str`. You may also supply an optional offset to the starting date. offset defaults to the current date and time. See [date.js](https://github.com/MatthewMueller/date) for more details or to report date parsing related issues.
 
@@ -123,7 +124,7 @@ console.log(dateStore.date('1 day from now'));
 //=> Tue Apr 12 2016 10:05:12 GMT-0400 (EDT)
 ```
 
-### [.time](index.js#L145)
+### [.time](index.js#L156)
 
 Get the numeric value corresponding to the time for the date object returned from the [.date](#date) method.
 
@@ -139,7 +140,7 @@ console.log(dateStore.date('1 day from now'));
 //=> Tue Apr 12 2016 10:05:12 GMT-0400 (EDT)
 ```
 
-### [.diff](index.js#L163)
+### [.diff](index.js#L174)
 
 Returns the difference in seconds between stored date `key` and the date returned from calling [date.js](https://github.com/MatthewMueller/date) on the given `timespan`.
 
@@ -156,7 +157,7 @@ console.log(dateStore.diff('foo', '10 minutes ago'));
 //=> 338563
 ```
 
-### [.lastSaved](index.js#L186)
+### [.lastSaved](index.js#L197)
 
 Calls [.getTime](#getTime) and adds the result to a `._time` property, which is then used by other methods chained from `.lastSaved`.
 
@@ -178,7 +179,7 @@ console.log(dateStore.lastSaved('bar').lessThan('31 minutes ago'));
 //=> true
 ```
 
-### [.moreThan](index.js#L209)
+### [.moreThan](index.js#L220)
 
 Calls [.time](#time) on the given `timespan`, and returns true if the returned time is older than `this._time`. _This method must be chained from [.lastSaved](#lastSaved)._
 
@@ -198,7 +199,7 @@ console.log(dateStore.lastSaved('bar').lessThan('1 minutes ago'));
 //=> true
 ```
 
-### [.lessThan](index.js#L231)
+### [.lessThan](index.js#L242)
 
 Calls `.time()` on the given `timespan`, and returns true if the returned time is newer than `this._time`. _This method must be chained from [.lastSaved](#lastSaved)._
 
@@ -218,7 +219,7 @@ console.log(dateStore.lastSaved('bar').lessThan('1 minutes ago'));
 //=> true
 ```
 
-### [.has](index.js#L248)
+### [.has](index.js#L259)
 
 Return true if a date is stored for `key`, false if `undefined`.
 
@@ -235,7 +236,7 @@ console.log(dateStore.has('foo'));
 //=> true
 ```
 
-### [.del](index.js#L263)
+### [.del](index.js#L274)
 
 Delete a date from the store.
 
@@ -250,7 +251,7 @@ Delete a date from the store.
 dateStore.del('foo');
 ```
 
-### [.save](index.js#L278)
+### [.save](index.js#L289)
 
 Persist the `dateStore.dates` cache to a JSON file at the currently defined [.path](#path).
 
@@ -260,7 +261,7 @@ Persist the `dateStore.dates` cache to a JSON file at the currently defined [.pa
 dateStore.save();
 ```
 
-### [.dir](index.js#L294)
+### [.dir](index.js#L305)
 
 Get or set the directory to use for the date store. Default is user home. Report any OS-related user-home issues to [os-homedir][].
 
@@ -271,7 +272,7 @@ console.log(dateStore.dir);
 //=> 'Users/jonschlinkert'
 ```
 
-### [.path](index.js#L310)
+### [.path](index.js#L321)
 
 Get or set the absolute path to use for the date store. Default is `dateStore.dir + '/.date-store.json'`.
 
@@ -282,7 +283,7 @@ console.log(dateStore.path);
 //=> 'Users/jonschlinkert/.date-store.json'
 ```
 
-### [.dates](index.js#L337)
+### [.dates](index.js#L348)
 
 When an instance of `DateStore` is created, if a store exists at the currently defined [.path](#path), the `.dates` cache is primed with the object created by calling `JSON.parse` on the contents of that file. Otherwise an empty object is used.
 
