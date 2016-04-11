@@ -31,8 +31,6 @@ function DateStore(options) {
  * ```js
  * dateStore.set(key);
  * ```
- *
- * @name .set
  * @param {String} `key`
  * @return {Object} Returns the instance for chaining.
  * @api public
@@ -57,7 +55,6 @@ DateStore.prototype.set = function(key) {
  * //=> true
  * ```
  *
- * @name .get
  * @param {String} `key` The name of the stored date to get.
  * @return {Date} Returns the date object for `key`
  * @api public
@@ -85,7 +82,6 @@ DateStore.prototype.get = function(key) {
  * //=> true
  * ```
  *
- * @name .get
  * @param {String} `key` The name of the stored date to get.
  * @return {String} Returns the stringified date for `key`
  * @api public
@@ -105,7 +101,6 @@ DateStore.prototype.getRaw = function(key) {
  * //=> 1460378350000
  * ```
  *
- * @name .getTime
  * @param {String} `key` The name of the stored date to get.
  * @return {Number}
  * @api public
@@ -125,7 +120,6 @@ DateStore.prototype.getTime = function(key) {
  * console.log(dateStore.date('1 day from now'));
  * //=> Tue Apr 12 2016 10:05:12 GMT-0400 (EDT)
  * ```
- * @name .date
  * @param {String} `str` A human-readable string to pass to [date.js][]
  * @return {Date} JavaScript Date object
  * @api public
@@ -143,7 +137,6 @@ DateStore.prototype.date = function() {
  * console.log(dateStore.date('1 day from now'));
  * //=> Tue Apr 12 2016 10:05:12 GMT-0400 (EDT)
  * ```
- * @name .date
  * @param {String} `str` A human-readable string to pass to [date.js][]
  * @return {Date} JavaScript Date object
  * @api public
@@ -161,7 +154,6 @@ DateStore.prototype.time = function() {
  * console.log(dateStore.diff('foo', '10 minutes ago'));
  * //=> 338563
  * ```
- * @name .diff
  * @param {String} `key` The stored date to compare
  * @param {String} `timespate` A human-readable string to pass to [date.js][]
  * @return {Number} The difference in seconds between the two dates, or `NaN` if invalid.
@@ -247,8 +239,6 @@ DateStore.prototype.lessThan = function(timespan) {
  * console.log(dateStore.has('foo'));
  * //=> true
  * ```
- *
- * @name .has
  * @param {String} `key`
  * @return {Boolean}
  * @api public
@@ -264,7 +254,6 @@ DateStore.prototype.has = function(key) {
  * ```js
  * dateStore.del('foo');
  * ```
- * @name .del
  * @param {String|Array} `key` Property name or array of property names.
  * @return {Object} Returns the instance for chaining.
  * @api public
@@ -282,7 +271,6 @@ DateStore.prototype.del = function(key) {
  * ```js
  * dateStore.save();
  * ```
- * @name .save
  * @api public
  */
 
