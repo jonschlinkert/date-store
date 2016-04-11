@@ -156,7 +156,7 @@ console.log(dateStore.diff('foo', '10 minutes ago'));
 //=> 338563
 ```
 
-### [.lastSaved](index.js#L185)
+### [.lastSaved](index.js#L186)
 
 Calls [.getTime](#getTime) and adds the result to a `._time` property, which is then used by other methods chained from `.lastSaved`.
 
@@ -174,10 +174,11 @@ console.log(dateStore._time);
 //=> 1460378350000
 console.log(dateStore.lastSaved('bar').moreThan('31 minutes ago'));
 //= false
-console.log(dateStore.lastSaved('bar').moreThan('31 minutes ago'));
+console.log(dateStore.lastSaved('bar').lessThan('31 minutes ago'));
+//=> true
 ```
 
-### [.moreThan](index.js#L208)
+### [.moreThan](index.js#L209)
 
 Calls [.time](#time) on the given `timespan`, and returns true if the returned time is older than `this._time`. _This method must be chained from [.lastSaved](#lastSaved)._
 
@@ -197,7 +198,7 @@ console.log(dateStore.lastSaved('bar').lessThan('1 minutes ago'));
 //=> true
 ```
 
-### [.lessThan](index.js#L230)
+### [.lessThan](index.js#L231)
 
 Calls `.time()` on the given `timespan`, and returns true if the returned time is newer than `this._time`. _This method must be chained from [.lastSaved](#lastSaved)._
 
@@ -217,7 +218,7 @@ console.log(dateStore.lastSaved('bar').lessThan('1 minutes ago'));
 //=> true
 ```
 
-### [.has](index.js#L247)
+### [.has](index.js#L248)
 
 Return true if a date is stored for `key`, false if `undefined`.
 
@@ -234,7 +235,7 @@ console.log(dateStore.has('foo'));
 //=> true
 ```
 
-### [.del](index.js#L262)
+### [.del](index.js#L263)
 
 Delete a date from the store.
 
@@ -249,7 +250,7 @@ Delete a date from the store.
 dateStore.del('foo');
 ```
 
-### [.save](index.js#L277)
+### [.save](index.js#L278)
 
 Persist the `dateStore.dates` cache to a JSON file at the currently defined [.path](#path).
 
@@ -259,7 +260,7 @@ Persist the `dateStore.dates` cache to a JSON file at the currently defined [.pa
 dateStore.save();
 ```
 
-### [.dir](index.js#L293)
+### [.dir](index.js#L294)
 
 Get or set the directory to use for the date store. Default is user home. Report any OS-related user-home issues to [os-homedir][].
 
@@ -270,7 +271,7 @@ console.log(dateStore.dir);
 //=> 'Users/jonschlinkert'
 ```
 
-### [.path](index.js#L309)
+### [.path](index.js#L310)
 
 Get or set the absolute path to use for the date store. Default is `dateStore.dir + '/.date-store.json'`.
 
@@ -281,7 +282,7 @@ console.log(dateStore.path);
 //=> 'Users/jonschlinkert/.date-store.json'
 ```
 
-### [.dates](index.js#L336)
+### [.dates](index.js#L337)
 
 When an instance of `DateStore` is created, if a store exists at the currently defined [.path](#path), the `.dates` cache is primed with the object created by calling `JSON.parse` on the contents of that file. Otherwise an empty object is used.
 

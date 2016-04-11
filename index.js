@@ -175,7 +175,8 @@ DateStore.prototype.diff = function(key, timespan) {
  * //=> 1460378350000
  * console.log(dateStore.lastSaved('bar').moreThan('31 minutes ago'));
  * //= false
- * console.log(dateStore.lastSaved('bar').moreThan('31 minutes ago'));
+ * console.log(dateStore.lastSaved('bar').lessThan('31 minutes ago'));
+ * //=> true
  * ```
  * @param {String} `key` The name of the stored date to set on `._time`
  * @return {Object} Returns the instance for chaining.
