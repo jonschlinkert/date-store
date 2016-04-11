@@ -1,6 +1,6 @@
 {
   "name": "date-store",
-  "description": "Easily persist or get the 'last saved date' for a given key.",
+  "description": "Easily persist or get stored dates/times. Useful for conditionally making updates in an application, based on the amount of time that has passed.",
   "version": "0.1.0",
   "homepage": "https://github.com/jonschlinkert/date-store",
   "author": "Jon Schlinkert (https://github.com/jonschlinkert)",
@@ -10,7 +10,8 @@
   },
   "license": "MIT",
   "files": [
-    "index.js"
+    "index.js",
+    "utils.js"
   ],
   "main": "index.js",
   "engines": {
@@ -19,22 +20,38 @@
   "scripts": {
     "test": "mocha"
   },
-  "dependencies": {},
+  "dependencies": {
+    "date.js": "^0.3.1",
+    "graceful-fs": "^4.1.3",
+    "kind-of": "^3.0.2",
+    "lazy-cache": "^1.0.3",
+    "map-cache": "^0.2.1",
+    "os-homedir": "^1.0.1",
+    "write-json": "^0.2.2"
+  },
   "devDependencies": {
     "gulp-format-md": "^0.1.7",
     "mocha": "^2.4.5"
   },
   "keywords": [],
   "verb": {
+    "run": true,
+    "toc": false,
     "layout": "default",
+    "tasks": [
+      "readme"
+    ],
     "plugins": [
       "gulp-format-md"
     ],
-    "related": {
-      "list": []
-    },
     "reflinks": [
-      "verb"
-    ]
+      "verb",
+      "date.js",
+      "date",
+      "os-homedir"
+    ],
+    "lint": {
+      "reflinks": true
+    }
   }
 }
