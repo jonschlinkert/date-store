@@ -10,18 +10,29 @@ var utils = require('./utils');
 module.exports = DateStore;
 
 /**
- * Create a new `DateStore` with the given options.
+ * Create a new `DateStore` with the given `name` and `options`.
  *
  * ```js
  * var dateStore = new DateStore();
  * ```
  *
+ * @param {String} `name` If `options.path` is supplied, `name` will be ignored. Otherwise `name` is used as the filename for the JSON store: `~/.date-store/{name}.json`
  * @param {Object} `options` Optionally pass a `dir` and/or `path` to use for the JSON store. Default is `~/.date-store.json`
  * @api public
  */
 
-function DateStore(options) {
+function DateStore(name, options) {
+  if (typeof name !== 'string') {
+    options = name;
+    name = null;
+  }
+
   this.options = options || {};
+  this.storeName = name || this.options.name;
+  if (typeof this.storeName !== 'string' && !this.options.path) {
+    throw new TypeError('expected "name" to be a string');
+  }
+
   this.cache = new utils.MapCache(this.dates);
 }
 
@@ -309,7 +320,7 @@ utils.define(DateStore.prototype, 'dir', function() {
 
 utils.define(DateStore.prototype, 'path', function() {
   return typeof this.options.path === 'undefined'
-    ? path.resolve(this.dir, '.date-store.json')
+    ? path.resolve(this.dir, '.date-store/' + this.storeName + '.json')
     : path.resolve(this.dir, this.options.path);
 });
 

@@ -7,7 +7,9 @@ var dateStore;
 
 describe('date-store', function() {
   beforeEach(function() {
-    dateStore = new DateStore({path: __dirname + '/fixtures/.test.json'});
+    dateStore = new DateStore({
+      path: __dirname + '/fixtures/.test.json'
+    });
   });
 
   describe('API', function() {
