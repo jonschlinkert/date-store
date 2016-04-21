@@ -148,7 +148,7 @@ DateStore.prototype.date = function() {
  * console.log(dateStore.date('1 day from now'));
  * //=> Tue Apr 12 2016 10:05:12 GMT-0400 (EDT)
  * ```
- * @param {String} `str` A human-readable string to pass to [date.js][]
+ * @param {String} `timespan` A human-readable string to pass to [date.js][]
  * @return {Date} JavaScript Date object
  * @api public
  */
@@ -166,7 +166,7 @@ DateStore.prototype.time = function() {
  * //=> 338563
  * ```
  * @param {String} `key` The stored date to compare
- * @param {String} `timespate` A human-readable string to pass to [date.js][]
+ * @param {String} `timespan` A human-readable string to pass to [date.js][]
  * @return {Number} The difference in seconds between the two dates, or `NaN` if invalid.
  * @api public
  */
@@ -241,6 +241,29 @@ DateStore.prototype.moreThan = function(timespan) {
 
 DateStore.prototype.lessThan = function(timespan) {
   return this._time && this._time > this.time(timespan);
+};
+
+/**
+ * Return an array of keys of items cached since the given `timespace`.
+ *
+ * ```js
+ * var keys = dateStore.filterSince('1 week ago');
+ * ```
+ * @param {String} `timespan` A human-readable string to pass to [date.js][]
+ * @return {Array} Returns an array of keys
+ * @api public
+ */
+
+DateStore.prototype.filterSince = function(timespan) {
+  var time = this.time(timespan);
+  var data = this.cache.__data__;
+  var res = [];
+  for (var key in data) {
+    if (data.hasOwnProperty(key) && time < new Date(data[key]).getTime()) {
+      res.push(key);
+    }
+  }
+  return res;
 };
 
 /**

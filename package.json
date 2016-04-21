@@ -21,7 +21,7 @@
     "test": "mocha"
   },
   "dependencies": {
-    "date.js": "^0.3.1",
+    "date.js": "github:matthewmueller/date",
     "graceful-fs": "^4.1.3",
     "kind-of": "^3.0.2",
     "lazy-cache": "^1.0.3",
@@ -33,25 +33,47 @@
     "gulp-format-md": "^0.1.7",
     "mocha": "^2.4.5"
   },
-  "keywords": [],
+  "keywords": [
+    "ago",
+    "cache",
+    "data",
+    "date",
+    "day",
+    "db",
+    "filter",
+    "month",
+    "since",
+    "store",
+    "time",
+    "week",
+    "year"
+  ],
   "verb": {
-    "run": true,
-    "toc": false,
-    "layout": "default",
-    "tasks": [
-      "readme"
-    ],
     "plugins": [
       "gulp-format-md"
     ],
     "reflinks": [
-      "verb",
-      "date.js",
       "date",
-      "os-homedir"
+      "date.js",
+      "os-homedir",
+      "verb"
     ],
+    "related": {
+      "highlight": "data-store",
+      "list": [
+        "data-store",
+        "time-stamp",
+        "nanoseconds"
+      ]
+    },
+    "run": true,
+    "toc": false,
+    "layout": "default",
     "lint": {
       "reflinks": true
-    }
+    },
+    "tasks": [
+      "readme"
+    ]
   }
 }
