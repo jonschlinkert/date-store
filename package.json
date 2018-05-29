@@ -1,7 +1,7 @@
 {
   "name": "date-store",
   "description": "Easily persist or get stored dates/times. Useful for conditionally making updates in an application based on the amount of time that has passed.",
-  "version": "0.1.2",
+  "version": "1.0.0",
   "homepage": "https://github.com/jonschlinkert/date-store",
   "author": "Jon Schlinkert (https://github.com/jonschlinkert)",
   "repository": "jonschlinkert/date-store",
@@ -10,28 +10,21 @@
   },
   "license": "MIT",
   "files": [
-    "index.js",
-    "utils.js"
+    "index.js"
   ],
   "main": "index.js",
   "engines": {
-    "node": ">=0.10.0"
+    "node": ">=8"
   },
   "scripts": {
     "test": "mocha"
   },
   "dependencies": {
-    "date.js": "github:matthewmueller/date",
-    "graceful-fs": "^4.1.3",
-    "kind-of": "^3.0.2",
-    "lazy-cache": "^1.0.3",
-    "map-cache": "^0.2.1",
-    "os-homedir": "^1.0.1",
-    "write-json": "^0.2.2"
+    "date.js": "^0.3.3"
   },
   "devDependencies": {
-    "gulp-format-md": "^0.1.7",
-    "mocha": "^2.4.5"
+    "gulp-format-md": "^1.0.0",
+    "mocha": "^5.2.0"
   },
   "keywords": [
     "ago",
@@ -49,31 +42,23 @@
     "year"
   ],
   "verb": {
+    "toc": false,
+    "layout": "default",
+    "tasks": [
+      "readme"
+    ],
     "plugins": [
       "gulp-format-md"
     ],
-    "reflinks": [
-      "date",
-      "date.js",
-      "os-homedir",
-      "verb"
-    ],
     "related": {
-      "highlight": "data-store",
       "list": [
         "data-store",
-        "time-stamp",
-        "nanoseconds"
+        "nanoseconds",
+        "time-stamp"
       ]
     },
-    "run": true,
-    "toc": false,
-    "layout": "default",
     "lint": {
       "reflinks": true
-    },
-    "tasks": [
-      "readme"
-    ]
+    }
   }
 }
