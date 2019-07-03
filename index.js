@@ -301,8 +301,8 @@ class DateStore {
     const time = this.time(timespan);
     const data = this.dates;
     const res = [];
-    for (const key in data) {
-      if (data.hasOwnProperty(key) && time < new Date(data[key]).getTime()) {
+    for (const key of Object.keys(data)) {
+      if (time < new Date(data[key]).getTime()) {
         res.push(key);
       }
     }
@@ -337,9 +337,7 @@ class DateStore {
    */
 
   json(replacer = null, space = this.indent) {
-    const dates = {};
-    for (const [key, date] of this.dates) dates[key] = date;
-    return JSON.stringify(dates, replacer, space);
+    return JSON.stringify(this.dates, replacer, space);
   }
 
   /**
