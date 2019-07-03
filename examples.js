@@ -1,8 +1,8 @@
 'use strict';
 
-var utils = require('./utils');
-var DateStore = require('./');
-var dateStore = new DateStore('date-store-examples');
+const utils = require('./utils');
+const DateStore = require('./');
+const dateStore = new DateStore('date-store-examples');
 
 // dateStore.set('abc');
 // dateStore.set('xyz');
